@@ -1,0 +1,31 @@
+<div id="<%= dom_id note %>">
+  <div class="container">
+    <div class="card w-75">
+      <div class="card-body">
+        <h3 class="card-title"> <%= note.title %> </h3>
+        <hr>
+        <% if note.image.attached? %>
+          <%= image_tag(note.image, style: "width: 10rem; border-radius: 10px") %>
+        <% end %>
+        <hr>
+        <p class="card-text">
+          <%= note.content %>
+        </p>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <%= link_to("Edit", edit_note_path(note), class: "btn btn-info btn-sm") %>
+        </div>
+        <div class="col">
+          <%= link_to("Home", notes_path, class: "btn btn-secondary btn-sm") %>
+        </div>
+        <div class="col">
+          <%= button_to("Delete", note_path(note), method: :delete, class: "btn btn-danger btn-sm") %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+
+<p style="color: green"><%= notice %></p>
+
+<div id="notes">
+  <div class="container" style="width: 20rem; text-align: center">
+    <div style="width: 20rem;">
+      <%= link_to("Add note", new_note_path, class: "btn btn-primary btn-sm") %>
+    </div>
+    &nbsp;
+  </div>
+
+    <div class="row" style="width: 100%; text-align: center">
+      <div class="col-6">
+        <h3>Completed Tasks</h3>
+        <ol>
+          <% @notes.each do |note| %>
+            <% if note.status.eql? "Completed" %>
+                <span style="font-size: 18px"> => <%= link_to(note.title, note_path(note)) %> </span>
+            <% end %>
+          <% end %>
+        </ol>
+      </div>
+
+      <div class="col-6">
+        <h3>On Progress Tasks</h3>
+        <% @notes.each do |note| %>
+          <% if note.status.eql? "On-Progress" %>
+          <div class="card w-120">
+            <div class="card-body">
+              <h5 class="card-title"> <%= note.title %> </h5>
+              <% if note.image.attached? %>
+                <%= image_tag(note.image, style: "width: 10rem; border-radius: 10px") %>
+              <% end %>
+              <p class="card-text">
+                <%= (note.content).truncate(40) %>
+              </p>
+              <%= link_to("Show", note_path(note)) %>
+            </div>
+          </div>
+          <br>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+
+<!--  </div>-->
+</div>
+
+
